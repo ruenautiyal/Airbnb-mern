@@ -1,10 +1,23 @@
+import {Route, Routes} from "react-router-dom";
 
-import './App.css'
+import Login from './components/Login';
+import Layout from './components/Layout';
+import Register from './components/Register';
+import axios from "axios";
+import { UserContextProvider } from "./UserContext";
+axios.defaults.baseURL='http://localhost:4000';
+axios.defaults.withCredentials=true;
 
-function App() {
+function App(){
   return (
-   <div>Welcome to AIRBNB!!</div>
+    <UserContextProvider>
+    <Routes>
+      <Route path ="/" element = {<Layout/>}>
+     <Route path = "/login" element ={<Login/>} />
+      <Route path = "/register" element ={<Register/>} />     
+      </Route>
+    </Routes>
+    </UserContextProvider>
   )
 }
-
-export default App
+export default App;
